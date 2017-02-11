@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet"/>
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    </head>
+    <body>
+        <ul class="list-group"></ul>
+        <div class="container">
+            <div class="row">
+                <textarea id="ms" class="form-control"></textarea>
+                <button class="btn btn-outline-danger">Send</button>
+            </div>
+        </div>
+        <script src="/socket.io/socket.io.js"></script>
+        <script>
+            var socket = io();
+            $('.btn').click(function(){
+                socket.emit('chat message', $('#ms').val());
+                $('#ms').val('');
+                return false;
+            });
+            socket.on('chat message', function(msg){
+                $('.list-group').append("<li class='list-group-item'>"+msg+"</li>");
+            });
+        </script>
+    </body>
+</html>
