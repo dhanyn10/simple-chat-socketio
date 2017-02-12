@@ -12,14 +12,6 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-3">
-<!--
-                    <div class="card">
-                        <div class="card-header">
-                            User Online
-                        </div>
-                        <div class="card-block" id="useronline"></div>
-                    </div>
--->
                 </div>
                 <div class="col-sm-9">
                     <ul class="list-group"></ul>
@@ -45,10 +37,10 @@
                 $('.list-group').append("<li class='list-group-item'>"+msg+"</li>");
             });
             
-            socket.on('calc', function(data){
-                $("#useronline").html(data['count']);
-                $('title').html('Realtime Chat (' + data['count'] + ")");
-            });
+            //retrieve data from index.js how many user online
+//            socket.on('calc', function(data){
+//                $("#useronline").html(data['count']);
+//            });
         </script>
     </body>
 </html>
