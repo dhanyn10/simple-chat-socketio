@@ -4,16 +4,32 @@
         <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     </head>
     <body>
-        <ul class="list-group"></ul>
         <div class="container">
             <div class="row">
-                <textarea id="ms" class="form-control"></textarea>
-                <button class="btn btn-outline-danger">Send</button>
+                <div class="col-sm-3">
+                    <div class="card">
+                        <div class="card-header">
+                            User Online
+                        </div>
+                        <div class="card-block" id="useronline"></div>
+                    </div>
+                </div>
+                <div class="col-sm-9">
+                    <ul class="list-group"></ul>
+                    <div class="container">
+                        <div class="row">
+                            <textarea id="ms" class="form-control"></textarea>
+                            <button class="btn btn-outline-danger">Send</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <script src="/socket.io/socket.io.js"></script>
         <script>
-            var socket = io();
+            var socket      = io();
+            var useronline  = 0;
+            
             $('.btn').click(function(){
                 socket.emit('chat message', $('#ms').val());
                 $('#ms').val('');
@@ -21,6 +37,10 @@
             });
             socket.on('chat message', function(msg){
                 $('.list-group').append("<li class='list-group-item'>"+msg+"</li>");
+            });
+            
+            socket.on('calc', function(data){
+                $("#useronline").html(data['count']);
             });
         </script>
     </body>
