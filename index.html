@@ -2,17 +2,24 @@
     <head>
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet"/>
         <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+        <title>Realtime Chat</title>
     </head>
     <body>
+        <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+            <h1 class="navbar-brand mb-0">Realtime Chat</h1>
+        </nav>
         <div class="container">
             <div class="row">
                 <div class="col-sm-3">
+<!--
                     <div class="card">
                         <div class="card-header">
                             User Online
                         </div>
                         <div class="card-block" id="useronline"></div>
                     </div>
+-->
                 </div>
                 <div class="col-sm-9">
                     <ul class="list-group"></ul>
@@ -28,7 +35,6 @@
         <script src="/socket.io/socket.io.js"></script>
         <script>
             var socket      = io();
-            var useronline  = 0;
             
             $('.btn').click(function(){
                 socket.emit('chat message', $('#ms').val());
@@ -41,6 +47,7 @@
             
             socket.on('calc', function(data){
                 $("#useronline").html(data['count']);
+                $('title').html('Realtime Chat (' + data['count'] + ")");
             });
         </script>
     </body>
