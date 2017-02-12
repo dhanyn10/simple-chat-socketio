@@ -17,6 +17,8 @@ io.on('connection', function(socket){
     
     //when a user online, +1 value to count
     count++;
+    //send value of "count" to index.html, known as "count" variable
+    //index.html will start to retrieve data at event "calc"
     io.emit('calc', {count : count});
     
     console.log("client : " + count);
